@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Strawnana Dollar Day Giveaway</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-image: url('https://i.postimg.cc/yYdZLVDp/Untitled-7.png');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    h1 {
+      color: #0f0;
+    }
+    #logo {
+      max-width: 200px;
+      margin-bottom: 20px;
+    }
+    #winner-box {
+      font-size: 2rem;
+      margin-top: 50px;
+      height: 100px;
+      line-height: 100px;
+      background-color: #222;
+      border-radius: 12px;
+      padding: 20px;
+      border: 2px solid #0f0;
+      width: 400px;
+      margin: 0 auto;
+    }
+    button {
+      font-size: 1.2rem;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #draw-btn {
+      background-color: #0f0;
+      color: #000;
+    }
+    #switch-btn {
+      display: none;
+    }
+      html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: rgba(0, 0, 0, 0.5); /* optional overlay for readability */
+      text-align: center;
+    }
+</style>
+</head>
+<body>
+  <div class="container">
+  <img id="logo" src="https://i.postimg.cc/Y0jCzCd1/Logo-Circle-with-website.png" alt="Logo" style="max-width: 150px; height: auto; margin-bottom: 20px;" />
+  <h1 id="main-title">🎉 THE BKC STRAWNANA DOLLAR DAY GIVEAWAY! 🎉</h1>
+  <div id="winner-box" style="display: flex; justify-content: center; align-items: center; text-align: center; color: #0f0; background-color: rgba(0,0,0,0.7);">THE WINNER IS...</div>
+  <div style="margin-top: 20px;">
+    <button id="draw-btn">🎲 CLICK TO SPIN</button>
+    <div style="margin-top: 20px;">
+      <button id="reset-btn">🔄 RESET DRAW</button>
+      <button id="export-btn">📋 EXPORT WINNERS</button>
+    </div>
+  </div>
+  <button id="switch-btn">🔁 SWITCH PICKER</button>
+
+  <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
+
+  <script>
+    let currentPicker = 1;
+    let entries = [];
+
+    function addTicketRange(start, end, targetList) {
+      for (let i = start; i <= end; i++) {
+        const padded = String(i).padStart(6, '0');
+        targetList.push(`Ticket ${padded}`);
+      }
+    }
+
+    const picker1 = [];
+    addTicketRange(81009, 81146, picker1);
+    addTicketRange(81786, 81830, picker1);
+    picker1.push(
+      "SPIN AGAIN", "Roccobigs", "Mommakel81", "saintk8", "Dirty Higgins", "Mojo36",
+      "wilisarus123", "JacobKadaver", "Baeify", "brackenbait", "QuimbusMaximus", "Piss Aroma",
+      "Jcoppo1992", "Kat Draco", "captpeli", "Degenerate_Destiny", "Chomps367", "a squirrel pit96",
+      "generalcramer", "Miky", "Fuck The System", "stitchkitsch", "Grim", "slightbeats", "Moonpie",
+      "Snoopy", "BeastmodeExodus1303", "Billyd", "Charles Purkerson", "Nonya Biz", "Jsmith19892008",
+      "coziploo", "Sour_DC", "Drall_pfeiffer", "Dazzo618", "kodaminoo", "Olivia", "SolidHouse",
+      "JNQiw", "Niceguy101_alwayz", "Poejyle", "XenoSoul HarmoniX", "Mantis Toboggan", "BinnyTigs",
+      "Shady101", "rdm693", "ElectriChaiRepair", "Manifestmitch", "ny4242", "Andrew Q", "nooping",
+      "0riontheHunter", "k10", "harrisop", "Veritas", "Nostradumbass", "colosses152003", "DrDuncan",
+      "shift", "bryantstoff", "Script"
+    );
+
+    const picker2 = [];
+    addTicketRange(81009, 81146, picker2);
+    addTicketRange(81786, 81830, picker2);
+    addTicketRange(81147, 81427, picker2);
+    addTicketRange(81600, 81611, picker2);
+    addTicketRange(81625, 81634, picker2);
+    addTicketRange(81732, 81755, picker2);
+    addTicketRange(81831, 81906, picker2);
+    addTicketRange(81428, 81586, picker2);
+    addTicketRange(81756, 81785, picker2);
+    addTicketRange(81587, 81731, picker2);
+
+    entries = [...picker1];
+
+    const fakeEntries = [
+      "Ticket 00000", "RandomUser1", "FakeName42", "Ticket 99999", "Unknown123", "N/A",
+      "--", "Try Again", "?", "TBD"
+    ];
+
+    const winnerBox = document.getElementById("winner-box");
+    const drawBtn = document.getElementById("draw-btn");
+    const mainTitle = document.getElementById("main-title");
+
+    const winners = [];
+    const winnersListEl = document.createElement("div");
+    winnersListEl.id = "winners-list";
+    winnersListEl.style.marginTop = "40px";
+    winnersListEl.innerHTML = '<h2 style="color:#0f0">🏆 Winners:</h2><ol id="winners"></ol>';
+    document.querySelector('.container').appendChild(winnersListEl);
+
+    function updateWinnersList() {
+      const list = document.getElementById("winners");
+      list.innerHTML = "";
+      winners.forEach(w => {
+        const li = document.createElement("li");
+        li.innerHTML = `<span style="color:#0f0">${w}</span>`;
+        list.appendChild(li);
+      });
+    }
+
+    function getRandomEntry(list) {
+      return list[Math.floor(Math.random() * list.length)];
+    }
+
+    function drawWinner() {
+      if (winners.length >= 13) {
+        alert("🎉 All 13 winners have been drawn!");
+        return;
+      }
+
+      drawBtn.disabled = true;
+      let countdown = 20;
+      const interval = setInterval(() => {
+        const roll = Math.random() < 0.7 ? getRandomEntry(fakeEntries) : getRandomEntry(entries);
+        winnerBox.textContent = roll;
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(interval);
+          let winner;
+          do {
+            winner = getRandomEntry(entries);
+          } while (winners.includes(winner));
+
+          winners.push(winner);
+          updateWinnersList();
+          winnerBox.textContent = `🎉 Winner: ${winner} 🎉`;
+          confetti();
+          drawBtn.disabled = false;
+        }
+      }, 100);
+    }
+
+    function switchPicker() {
+      currentPicker = currentPicker === 1 ? 2 : 1;
+      entries = currentPicker === 1 ? [...picker1] : [...picker2];
+      if (currentPicker === 2) {
+        document.title = "ARE YOU READY FOR THE GRAND PRIZES";
+        mainTitle.textContent = "🎁 ARE YOU READY FOR THE GRAND PRIZES? 🎁";
+      } else {
+        document.title = "Strawnana Dollar Day Giveaway";
+        mainTitle.textContent = "🎉 THE BKC STRAWNANA DOLLAR DAY GIVEAWAY! 🎉";
+      }
+    }
+
+    drawBtn.addEventListener("click", drawWinner);
+
+    document.getElementById("reset-btn").addEventListener("click", () => {
+      winners.length = 0;
+      updateWinnersList();
+      winnerBox.textContent = "THE WINNER IS...";
+    });
+
+    document.getElementById("export-btn").addEventListener("click", () => {
+      const csvContent = 'data:text/csv;charset=utf-8,' + winners.map((w, i) => `${i + 1},${w}`).join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "bkc_winners.csv");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Shift") {
+        switchPicker();
+      }
+    });
+
+    function confetti() {
+      const duration = 2 * 1000;
+      const end = Date.now() + duration;
+      (function frame() {
+        window.confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+        window.confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+        if (Date.now() < end) requestAnimationFrame(frame);
+      })();
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </div>
+</body>
+</html>
