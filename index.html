@@ -46,7 +46,7 @@
       cursor: pointer;
     }
     #draw-btn { background-color: #0f0; color: #000; }
-    #switch-btn { display: none; }
+    #switch-btn { display: none; } /* we use Shift key to toggle */
     html, body { height: 100%; margin: 0; padding: 0; }
     .container {
       display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -70,7 +70,10 @@
     <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
 
     <script>
-      // ===== DATA ==========================================================
+      // ===== CONFIG =====
+      const MAX_WINNERS = 13;
+
+      // ===== DATA: ORDERS =====
       const orders = [
         "BKC - 8124","BKC - 8339","BKC - 8092","BKC - 8600","BKC - 8377",
         "BKC - 8036","BKC - 8046","BKC - 8438","BKC - 8610","BKC - 8542",
@@ -84,6 +87,7 @@
         "BKC - 8294","BKC - 8319","BKC - 8429","BKC - 8518","BKC - 8408"
       ];
 
+      // ===== DATA: NAMES =====
       const names = [
         "Dont_BBlink","Mario","SamanthaJ","Joe805","Warmongerz","Insidiousowl",
         "Brightdreamer","MickeyDowning","That1Btch","Crash923","Jack P.",
@@ -111,11 +115,13 @@
         "IAmJuniorB","Jeffrx","hungryhobo2","Blergs","MoneyMike1515","Cashman","Lane"
       ];
 
-      // Picker 1 = Orders + Names; Picker 2 = Orders only
-      const picker1 = ["SPIN AGAIN", ...orders, ...names];
-      const picker2 = ["SPIN AGAIN", ...orders];
+      // ===== PICKERS =====
+      // Spinner 1 = orders + names
+      const picker1 = [...orders, ...names];
+      // Spinner 2 = orders only
+      const picker2 = [...orders];
 
-      // ===== STATE / ELEMENTS =============================================
+      // ===== STATE / ELEMENTS =====
       let currentPicker = 1;
       let entries = [...picker1];
 
@@ -131,4 +137,98 @@
       document.querySelector('.container').appendChild(winnersListEl);
 
       function updateWinnersList() {
-        c
+        const list = document.getElementById("winners");
+        list.innerHTML = "";
+        winners.forEach(w => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span style="color:#0f0">${w}</span>`;
+          list.appendChild(li);
+        });
+      }
+
+      const getRandomEntry = list => list[Math.floor(Math.random() * list.length)];
+
+      function drawWinner() {
+        if (winners.length >= MAX_WINNERS) {
+          alert(`🎉 All ${MAX_WINNERS} winners have been drawn!`);
+          return;
+        }
+
+        drawBtn.disabled = true;
+        let countdown = 20;
+
+        const interval = setInterval(() => {
+          const roll = getRandomEntry(entries);
+          winnerBox.textContent = roll;
+          countdown--;
+
+          if (countdown <= 0) {
+            clearInterval(interval);
+            let winner;
+            do {
+              winner = getRandomEntry(entries);
+            } while (winners.includes(winner)); // avoid duplicates in winners list
+
+            winners.push(winner);
+            updateWinnersList();
+            winnerBox.textContent = `🎉 Winner: ${winner} 🎉`;
+            launchConfetti();
+            drawBtn.disabled = false;
+          }
+        }, 100);
+      }
+
+      function switchPicker() {
+        currentPicker = currentPicker === 1 ? 2 : 1;
+        entries = currentPicker === 1 ? [...picker1] : [...picker2];
+
+        if (currentPicker === 2) {
+          document.title = "ARE YOU READY FOR THE GRAND PRIZES";
+          mainTitle.textContent = "🎁 ARE YOU READY FOR THE GRAND PRIZES? 🎁";
+        } else {
+          document.title = "COTTON CANDY DOLLAR DAY GIVEAWAY!";
+          mainTitle.textContent = "🎉 THE BKC Cotton Candy! DOLLAR DAY GIVEAWAY! 🎉";
+        }
+      }
+
+      // ===== EVENTS =====
+      drawBtn.addEventListener("click", drawWinner);
+
+      document.getElementById("reset-btn").addEventListener("click", () => {
+        winners.length = 0;
+        updateWinnersList();
+        winnerBox.textContent = "THE WINNER IS...";
+      });
+
+      document.getElementById("export-btn").addEventListener("click", () => {
+        const csvContent = 'data:text/csv;charset=utf-8,' + winners.map((w, i) => `${i + 1},${w}`).join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "bkc_winners.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      // Shift toggles between pickers
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Shift") switchPicker();
+      });
+
+      // ===== CONFETTI =====
+      function launchConfetti() {
+        const duration = 2000;
+        const end = Date.now() + duration;
+        (function frame() {
+          window.confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
+          window.confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
+          if (Date.now() < end) requestAnimationFrame(frame);
+        })();
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </div>
+</body>
+</html>
