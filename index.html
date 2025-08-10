@@ -13,9 +13,7 @@
       background-position: center;
       background-repeat: no-repeat;
     }
-    h1 {
-      color: #0f0;
-    }
+    h1 { color: #0f0; }
     #logo {
       max-width: 150px;
       height: auto;
@@ -47,26 +45,12 @@
       font-weight: bold;
       cursor: pointer;
     }
-    #draw-btn {
-      background-color: #0f0;
-      color: #000;
-    }
-    #switch-btn {
-      display: none;
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+    #draw-btn { background-color: #0f0; color: #000; }
+    #switch-btn { display: none; }
+    html, body { height: 100%; margin: 0; padding: 0; }
     .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      background-color: rgba(0, 0, 0, 0.5);
-      text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      min-height: 100vh; background-color: rgba(0, 0, 0, 0.5); text-align: center;
     }
   </style>
 </head>
@@ -86,34 +70,54 @@
     <canvas id="confetti-canvas" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;"></canvas>
 
     <script>
+      // ===== DATA ==========================================================
+      const orders = [
+        "BKC - 8124","BKC - 8339","BKC - 8092","BKC - 8600","BKC - 8377",
+        "BKC - 8036","BKC - 8046","BKC - 8438","BKC - 8610","BKC - 8542",
+        "BKC - 8635","BKC - 8186","BKC - 8251","BKC - 8364","BKC - 8226",
+        "BKC - 8532","BKC - 8488","BKC - 7964","BKC - 8441","BKC - 8248",
+        "BKC - 8075","BKC - 8628","BKC - 8570","BKC - 8182","BKC - 8190",
+        "BKC - 8009","BKC - 8198","BKC - 8382","BKC - 8304","BKC - 8018",
+        "BKC - 8014","BKC - 8496","BKC - 7984","BKC - 8427","BKC - 8095",
+        "BKC - 8354","BKC - 8128","BKC - 8452","BKC - 8041","BKC - 8278",
+        "BKC - 8608","BKC - 8383","BKC - 8454","BKC - 8146","BKC - 8423",
+        "BKC - 8294","BKC - 8319","BKC - 8429","BKC - 8518","BKC - 8408"
+      ];
+
+      const names = [
+        "Dont_BBlink","Mario","SamanthaJ","Joe805","Warmongerz","Insidiousowl",
+        "Brightdreamer","MickeyDowning","That1Btch","Crash923","Jack P.",
+        "Pink Mimosa 🍸🩷","Shickenisgood","CharlieHustle","Squatch","bojustice",
+        "SHNATSS","Spencer","SamanthaJ","ShoySauce","Lead_Handed","DKUltra69",
+        "Virtualanomaly8","Grom","ScubaSteve","SquirterMcGavin","Doubledose7",
+        "u/Inevitable-Log-287","Minorthreat2","MarkyMark311","zona_bamblona",
+        "tabDaddy","Jeffrobodean88","Ataylor89","Holladimsum","Bafisher22",
+        "Rustshacleford","Cosmic_explorer_1943","Pat967",
+        "Old_dirty_chinese_restaurant","Daniel836","Heavy.Solstice","Trendsetter",
+        "Mdiddy","COVERTLOTUS","Nlightened333","Cold8","Sunshine RagerXX",
+        "SevensHeavens_Steve","Malicev","Jussmoney416","zeroDOLLARgRo",
+        "J-McPaid92","DadBrewsCraft","Xx_420BlaiZeMa$tEr69_xX","Eyeswideshut369",
+        "MacInvest","DarkBillee","Fckyou69","664992","Alxanderthegreat","Jerry",
+        "ChanDaMan","Bigmike0912","TR3DAY1","Dev_7oh","AlwaystheLastLeg",
+        "ImpulsivelyTentative","TheDextrometh-Orphan","Impactbytruth",
+        "LungzOfGod91","Jr83","Jayoverhol","stereofoo4269","Puller",
+        "Itsziggytime","Jmw0120","Tmoney","Fattyhtx","JackStrawWichita",
+        "LosingMyWayO7","Cdizzle","Sp33d3r","PlurIsTheWord","7ohBlack-Tori",
+        "Andy42591","Cozi.FM","JitBunzGlazed","MrZombieLive","♡Luna♡",
+        "Mitragynist","Informal_house","BaddyTiaraNikki","BruceMcDickles",
+        "TeeMesa480","Jim580","HoustonSolo","Chuckt6589","Mr. Mean Nice Guy",
+        "Alcatrazepam","Insidiousowl","Captbottombouncer","Wacky2bakky","7th Heaven",
+        "Dense-Extent6058","Stablegenius","Psychonaut","ManBearPig","Karmonic",
+        "IAmJuniorB","Jeffrx","hungryhobo2","Blergs","MoneyMike1515","Cashman","Lane"
+      ];
+
+      // Picker 1 = Orders + Names; Picker 2 = Orders only
+      const picker1 = ["SPIN AGAIN", ...orders, ...names];
+      const picker2 = ["SPIN AGAIN", ...orders];
+
+      // ===== STATE / ELEMENTS =============================================
       let currentPicker = 1;
-      let entries = [];
-
-      function addTicketRange(start, end, targetList) {
-        for (let i = start; i <= end; i++) {
-          const padded = String(i).padStart(6, '0');
-          targetList.push(`Ticket ${padded}`);
-        }
-      }
-
-      const picker1 = [];
-      picker1.push("SPIN AGAIN", "BKC - 8124", "BKC - 8339", "BKC - 8092", "BKC - 8600", "BKC - 8377",
-"BKC - 8036", "BKC - 8046", "BKC - 8438", "BKC - 8610", "BKC - 8542",
-"BKC - 8635", "BKC - 8186", "BKC - 8251", "BKC - 8364", "BKC - 8226",
-"BKC - 8532", "BKC - 8488", "BKC - 7964", "BKC - 8441", "BKC - 8248",
-"BKC - 8075", "BKC - 8628", "BKC - 8570", "BKC - 8182", "BKC - 8190",
-"BKC - 8009", "BKC - 8198", "BKC - 8382", "BKC - 8304", "BKC - 8018",
-"BKC - 8014", "BKC - 8496", "BKC - 7984", "BKC - 8427", "BKC - 8095",
-"BKC - 8354", "BKC - 8128", "BKC - 8452", "BKC - 8041", "BKC - 8278",
-"BKC - 8608", "BKC - 8383", "BKC - 8454", "BKC - 8146", "BKC - 8423",
-"BKC - 8294", "BKC - 8319", "BKC - 8429", "BKC - 8518", "BKC - 8408", "Script");
-
-      const picker2 = [];
-      addTicketRange(81009, 81146, picker2);
-      addTicketRange(81786, 81830, picker2);
-      addTicketRange(81147, 81427, picker2);
-
-      entries = [...picker1];
+      let entries = [...picker1];
 
       const winnerBox = document.getElementById("winner-box");
       const drawBtn = document.getElementById("draw-btn");
@@ -127,95 +131,4 @@
       document.querySelector('.container').appendChild(winnersListEl);
 
       function updateWinnersList() {
-        const list = document.getElementById("winners");
-        list.innerHTML = "";
-        winners.forEach(w => {
-          const li = document.createElement("li");
-          li.innerHTML = `<span style="color:#0f0">${w}</span>`;
-          list.appendChild(li);
-        });
-      }
-
-      function getRandomEntry(list) {
-        return list[Math.floor(Math.random() * list.length)];
-      }
-
-      function drawWinner() {
-        if (winners.length >= 13) {
-          alert("🎉 All 13 winners have been drawn!");
-          return;
-        }
-
-        drawBtn.disabled = true;
-        let countdown = 20;
-        const interval = setInterval(() => {
-          const roll = getRandomEntry(entries);
-          winnerBox.textContent = roll;
-          countdown--;
-          if (countdown <= 0) {
-            clearInterval(interval);
-            let winner;
-            do {
-              winner = getRandomEntry(entries);
-            } while (winners.includes(winner));
-
-            winners.push(winner);
-            updateWinnersList();
-            winnerBox.textContent = `🎉 Winner: ${winner} 🎉`;
-            confetti();
-            drawBtn.disabled = false;
-          }
-        }, 100);
-      }
-
-      function switchPicker() {
-        currentPicker = currentPicker === 1 ? 2 : 1;
-        entries = currentPicker === 1 ? [...picker1] : [...picker2];
-        if (currentPicker === 2) {
-          document.title = "ARE YOU READY FOR THE GRAND PRIZES";
-          mainTitle.textContent = "🎁 ARE YOU READY FOR THE GRAND PRIZES? 🎁";
-        } else {
-          document.title = "Strawnana Dollar Day Giveaway";
-          mainTitle.textContent = "🎉 THE BKC STRAWNANA DOLLAR DAY GIVEAWAY! 🎉";
-        }
-      }
-
-      drawBtn.addEventListener("click", drawWinner);
-
-      document.getElementById("reset-btn").addEventListener("click", () => {
-        winners.length = 0;
-        updateWinnersList();
-        winnerBox.textContent = "THE WINNER IS...";
-      });
-
-      document.getElementById("export-btn").addEventListener("click", () => {
-        const csvContent = 'data:text/csv;charset=utf-8,' + winners.map((w, i) => `${i + 1},${w}`).join('\n');
-        const encodedUri = encodeURI(csvContent);
-        const link = document.createElement("a");
-        link.setAttribute("href", encodedUri);
-        link.setAttribute("download", "bkc_winners.csv");
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Shift") {
-          switchPicker();
-        }
-      });
-
-      function confetti() {
-        const duration = 2 * 1000;
-        const end = Date.now() + duration;
-        (function frame() {
-          window.confetti({ particleCount: 5, angle: 60, spread: 55, origin: { x: 0 } });
-          window.confetti({ particleCount: 5, angle: 120, spread: 55, origin: { x: 1 } });
-          if (Date.now() < end) requestAnimationFrame(frame);
-        })();
-      }
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  </div>
-</body>
-</html>
+        c
