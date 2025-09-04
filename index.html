@@ -230,7 +230,7 @@
       const winnersListEl = document.createElement("div");
       winnersListEl.id = "winners-list";
       winnersListEl.style.marginTop = "40px";
-      winnersListEl.innerHTML = '<h2 style="color:#0f0">🏆 Winners:</h2><ol id="winners"></ol>';
+      winnersListEl.innerHTML = '<h2 style="color:#0f0">🏆 Lucky Winners:</h2><ol id="winners"></ol>';
       document.querySelector('.container').appendChild(winnersListEl);
 
       function updateWinnersList() {
@@ -238,7 +238,7 @@
         list.innerHTML = "";
         winners.forEach(w => {
           const li = document.createElement("li");
-          li.innerHTML = `<span style="color:#0f0">${w}</span>`;
+          li.innerHTML = `<span style="color:#ffffff">${w}</span>`;
           list.appendChild(li);
         });
       }
