@@ -275,26 +275,38 @@
         }, 100);
       }
 
-      function switchPicker() {
-        currentPicker = currentPicker === 1 ? 2 : 1;
-        entries = currentPicker === 1 ? [...picker1] : [...picker2];
+      function setCheesecakeTitles() {
+    document.title = "CHERRY CHEESECAKE DOLLAR DAY GIVEAWAY!";
+    mainTitle.textContent = "🎉 THE BKC CHERRY CHEESECAKE DOLLAR DAY GIVEAWAY! 🎉";
+  }
 
-        if (currentPicker === 2) {
-          document.title = "ARE YOU READY FOR THE GRAND PRIZES";
-          mainTitle.textContent = "🎁 ARE YOU READY FOR THE GRAND PRIZES? 🎁";
-        } else {
-          document.title = "CHERRY CHEESECAKE DOLLAR DAY GIVEAWAY!";
-          mainTitle.textContent = "🎉 THE BKC CHERRY CHEESECAKE DOLLAR DAY GIVEAWAY! 🎉";
-        }
-      }
+  function setGrandPrizesTitles() {
+    document.title = "ARE YOU READY FOR THE GRAND PRIZES";
+    mainTitle.textContent = "🎁 ARE YOU READY FOR THE GRAND PRIZES? 🎁";
+  }
 
+  function switchPicker() {
+    currentPicker = currentPicker === 1 ? 2 : 1;
+    entries = currentPicker === 1 ? [...picker1] : [...picker2];
+
+    if (currentPicker === 2) {
+      setGrandPrizesTitles();
+    } else {
+      setCheesecakeTitles();
+    }
+  }
+
+  // Set correct default titles on initial load (so no Shift is required)
+  document.addEventListener("DOMContentLoaded", () => {
+    setCheesecakeTitles(); // default view is picker1
+  });
       // ===== EVENTS =====
       drawBtn.addEventListener("click", drawWinner);
 
       document.getElementById("reset-btn").addEventListener("click", () => {
         winners.length = 0;
         updateWinnersList();
-        winnerBox.textContent = "THE WINNER IS...";
+        winnerBox.textContent = "THE LUCKY BKC FAM MEMBER IS...";
       });
 
       document.getElementById("export-btn").addEventListener("click", () => {
