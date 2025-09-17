@@ -73,4 +73,549 @@
       // ===== CONFIG =====
       const MAX_WINNERS = 13;
 
-      // ===== DATA: ORDERS (expanded b
+      // ===== DATA: ORDERS (expanded by entry counts) =====
+const orders = [
+  "BKC - 11241", "BKC - 11242", "BKC - 11243", "BKC - 11244",
+  "BKC - 11245", "BKC - 11245", "BKC - 11245", "BKC - 11245",
+  "BKC - 11245", "BKC - 11246", "BKC - 11246", "BKC - 11246",
+  "BKC - 11246", "BKC - 11246", "BKC - 11247", "BKC - 11247",
+  "BKC - 11248", "BKC - 11249", "BKC - 11249", "BKC - 11249",
+  "BKC - 11249", "BKC - 11250", "BKC - 11250", "BKC - 11251",
+  "BKC - 11252", "BKC - 11253", "BKC - 11254", "BKC - 11254",
+  "BKC - 11254", "BKC - 11254", "BKC - 11254", "BKC - 11254",
+  "BKC - 11254", "BKC - 11254", "BKC - 11254", "BKC - 11254",
+  "BKC - 11255", "BKC - 11256", "BKC - 11256", "BKC - 11257",
+  "BKC - 11257", "BKC - 11258", "BKC - 11259", "BKC - 11259",
+  "BKC - 11259", "BKC - 11260", "BKC - 11261", "BKC - 11262",
+  "BKC - 11262", "BKC - 11263", "BKC - 11263", "BKC - 11263",
+  "BKC - 11263", "BKC - 11265", "BKC - 11266", "BKC - 11267",
+  "BKC - 11268", "BKC - 11268", "BKC - 11269", "BKC - 11269",
+  "BKC - 11270", "BKC - 11271", "BKC - 11271", "BKC - 11272",
+  "BKC - 11273", "BKC - 11273", "BKC - 11273", "BKC - 11274",
+  "BKC - 11275", "BKC - 11276", "BKC - 11277", "BKC - 11277",
+  "BKC - 11278", "BKC - 11278", "BKC - 11278", "BKC - 11280",
+  "BKC - 11280", "BKC - 11280", "BKC - 11281", "BKC - 11281",
+  "BKC - 11281", "BKC - 11282", "BKC - 11282", "BKC - 11285",
+  "BKC - 11285", "BKC - 11285", "BKC - 11286", "BKC - 11287",
+  "BKC - 11288", "BKC - 11289", "BKC - 11289", "BKC - 11290",
+  "BKC - 11291", "BKC - 11292", "BKC - 11292", "BKC - 11293",
+  "BKC - 11294", "BKC - 11294", "BKC - 11294", "BKC - 11295",
+  "BKC - 11295", "BKC - 11298", "BKC - 11298", "BKC - 11298",
+  "BKC - 11299", "BKC - 11299", "BKC - 11300", "BKC - 11301",
+  "BKC - 11301", "BKC - 11302", "BKC - 11302", "BKC - 11303",
+  "BKC - 11304", "BKC - 11304", "BKC - 11305", "BKC - 11306",
+  "BKC - 11307", "BKC - 11307", "BKC - 11307", "BKC - 11307",
+  "BKC - 11307", "BKC - 11308", "BKC - 11308", "BKC - 11310",
+  "BKC - 11310", "BKC - 11310", "BKC - 11311", "BKC - 11312",
+  "BKC - 11313", "BKC - 11314", "BKC - 11314", "BKC - 11314",
+  "BKC - 11315", "BKC - 11315", "BKC - 11316", "BKC - 11317",
+  "BKC - 11318", "BKC - 11319", "BKC - 11319", "BKC - 11319",
+  "BKC - 11319", "BKC - 11320", "BKC - 11321", "BKC - 11321",
+  "BKC - 11321", "BKC - 11321", "BKC - 11323", "BKC - 11324",
+  "BKC - 11325", "BKC - 11326", "BKC - 11326", "BKC - 11327",
+  "BKC - 11328", "BKC - 11328", "BKC - 11328", "BKC - 11329",
+  "BKC - 11329", "BKC - 11330", "BKC - 11331", "BKC - 11332",
+  "BKC - 11332", "BKC - 11332", "BKC - 11332", "BKC - 11333",
+  "BKC - 11334", "BKC - 11335", "BKC - 11336", "BKC - 11337",
+  "BKC - 11338", "BKC - 11338", "BKC - 11338", "BKC - 11338",
+  "BKC - 11339", "BKC - 11341", "BKC - 11343", "BKC - 11344",
+  "BKC - 11344", "BKC - 11345", "BKC - 11345", "BKC - 11345",
+  "BKC - 11345", "BKC - 11345", "BKC - 11345", "BKC - 11345",
+  "BKC - 11345", "BKC - 11345", "BKC - 11345", "BKC - 11346",
+  "BKC - 11346", "BKC - 11346", "BKC - 11346", "BKC - 11347",
+  "BKC - 11348", "BKC - 11348", "BKC - 11349", "BKC - 11350",
+  "BKC - 11350", "BKC - 11351", "BKC - 11352", "BKC - 11352",
+  "BKC - 11352", "BKC - 11352", "BKC - 11353", "BKC - 11354",
+  "BKC - 11355", "BKC - 11356", "BKC - 11357", "BKC - 11357",
+  "BKC - 11357", "BKC - 11359", "BKC - 11360", "BKC - 11361",
+  "BKC - 11362", "BKC - 11363", "BKC - 11363", "BKC - 11364",
+  "BKC - 11365", "BKC - 11366", "BKC - 11367", "BKC - 11367",
+  "BKC - 11368", "BKC - 11369", "BKC - 11369", "BKC - 11369",
+  "BKC - 11370", "BKC - 11371", "BKC - 11373", "BKC - 11373",
+  "BKC - 11373", "BKC - 11374", "BKC - 11375", "BKC - 11375",
+  "BKC - 11376", "BKC - 11376", "BKC - 11378", "BKC - 11378",
+  "BKC - 11378", "BKC - 11379", "BKC - 11380", "BKC - 11380",
+  "BKC - 11381", "BKC - 11382", "BKC - 11383", "BKC - 11384",
+  "BKC - 11384", "BKC - 11385", "BKC - 11386", "BKC - 11386",
+  "BKC - 11386", "BKC - 11387", "BKC - 11387", "BKC - 11387",
+  "BKC - 11388", "BKC - 11389", "BKC - 11390", "BKC - 11390",
+  "BKC - 11390", "BKC - 11391", "BKC - 11391", "BKC - 11392",
+  "BKC - 11392", "BKC - 11392", "BKC - 11393", "BKC - 11393",
+  "BKC - 11394", "BKC - 11395", "BKC - 11396", "BKC - 11397",
+  "BKC - 11398", "BKC - 11398", "BKC - 11398", "BKC - 11398",
+  "BKC - 11398", "BKC - 11399", "BKC - 11400", "BKC - 11401",
+  "BKC - 11402", "BKC - 11402", "BKC - 11402", "BKC - 11402",
+  "BKC - 11403", "BKC - 11404", "BKC - 11405", "BKC - 11406",
+  "BKC - 11406", "BKC - 11407", "BKC - 11407", "BKC - 11407",
+  "BKC - 11407", "BKC - 11407", "BKC - 11408", "BKC - 11409",
+  "BKC - 11409", "BKC - 11410", "BKC - 11410", "BKC - 11410",
+  "BKC - 11410", "BKC - 11410", "BKC - 11411", "BKC - 11412",
+  "BKC - 11413", "BKC - 11413", "BKC - 11414", "BKC - 11415",
+  "BKC - 11415", "BKC - 11417", "BKC - 11417", "BKC - 11417",
+  "BKC - 11418", "BKC - 11418", "BKC - 11419", "BKC - 11419",
+  "BKC - 11419", "BKC - 11420", "BKC - 11421", "BKC - 11421",
+  "BKC - 11422", "BKC - 11422", "BKC - 11422", "BKC - 11423",
+  "BKC - 11424", "BKC - 11425", "BKC - 11425", "BKC - 11425",
+  "BKC - 11426", "BKC - 11426", "BKC - 11426", "BKC - 11427",
+  "BKC - 11428", "BKC - 11429", "BKC - 11429", "BKC - 11429",
+  "BKC - 11430", "BKC - 11431", "BKC - 11431", "BKC - 11431",
+  "BKC - 11432", "BKC - 11433", "BKC - 11433", "BKC - 11434",
+  "BKC - 11434", "BKC - 11434", "BKC - 11434", "BKC - 11434",
+  "BKC - 11435", "BKC - 11436", "BKC - 11436", "BKC - 11436",
+  "BKC - 11436", "BKC - 11436", "BKC - 11437", "BKC - 11437",
+  "BKC - 11438", "BKC - 11438", "BKC - 11438", "BKC - 11439",
+  "BKC - 11440", "BKC - 11440", "BKC - 11440", "BKC - 11440",
+  "BKC - 11440", "BKC - 11441", "BKC - 11442", "BKC - 11443",
+  "BKC - 11443", "BKC - 11444", "BKC - 11444", "BKC - 11445",
+  "BKC - 11446", "BKC - 11447", "BKC - 11447", "BKC - 11449",
+  "BKC - 11449", "BKC - 11450", "BKC - 11450", "BKC - 11451",
+  "BKC - 11452", "BKC - 11453", "BKC - 11453", "BKC - 11453",
+  "BKC - 11454", "BKC - 11454", "BKC - 11455", "BKC - 11455",
+  "BKC - 11455", "BKC - 11456", "BKC - 11456", "BKC - 11456",
+  "BKC - 11457", "BKC - 11457", "BKC - 11458", "BKC - 11459",
+  "BKC - 11460", "BKC - 11462", "BKC - 11462", "BKC - 11463",
+  "BKC - 11463", "BKC - 11464", "BKC - 11467", "BKC - 11468",
+  "BKC - 11468", "BKC - 11469", "BKC - 11470", "BKC - 11471",
+  "BKC - 11472", "BKC - 11472", "BKC - 11473", "BKC - 11474",
+  "BKC - 11474", "BKC - 11474", "BKC - 11475", "BKC - 11475",
+  "BKC - 11476", "BKC - 11476", "BKC - 11477", "BKC - 11479",
+  "BKC - 11479", "BKC - 11479", "BKC - 11480", "BKC - 11481",
+  "BKC - 11482", "BKC - 11482", "BKC - 11483", "BKC - 11484",
+  "BKC - 11486", "BKC - 11487", "BKC - 11487", "BKC - 11488",
+  "BKC - 11489", "BKC - 11489", "BKC - 11490", "BKC - 11490",
+  "BKC - 11490", "BKC - 11490", "BKC - 11490", "BKC - 11491",
+  "BKC - 11492", "BKC - 11493", "BKC - 11494", "BKC - 11495",
+  "BKC - 11496", "BKC - 11497", "BKC - 11498", "BKC - 11498",
+  "BKC - 11498", "BKC - 11499", "BKC - 11499", "BKC - 11499",
+  "BKC - 11499", "BKC - 11499", "BKC - 11500", "BKC - 11500",
+  "BKC - 11501", "BKC - 11502", "BKC - 11503", "BKC - 11503",
+  "BKC - 11504", "BKC - 11505", "BKC - 11506", "BKC - 11507",
+  "BKC - 11507", "BKC - 11508", "BKC - 11509", "BKC - 11509",
+  "BKC - 11509", "BKC - 11509", "BKC - 11509", "BKC - 11510",
+  "BKC - 11511", "BKC - 11511", "BKC - 11511", "BKC - 11511",
+  "BKC - 11511", "BKC - 11512", "BKC - 11513", "BKC - 11513",
+  "BKC - 11513", "BKC - 11513", "BKC - 11513", "BKC - 11514",
+  "BKC - 11514", "BKC - 11515", "BKC - 11516", "BKC - 11516",
+  "BKC - 11517", "BKC - 11518", "BKC - 11518", "BKC - 11518",
+  "BKC - 11518", "BKC - 11518", "BKC - 11519", "BKC - 11519",
+  "BKC - 11521", "BKC - 11522", "BKC - 11523", "BKC - 11523",
+  "BKC - 11524", "BKC - 11524", "BKC - 11525", "BKC - 11525",
+  "BKC - 11526", "BKC - 11526", "BKC - 11527", "BKC - 11527",
+  "BKC - 11528", "BKC - 11528", "BKC - 11528", "BKC - 11529",
+  "BKC - 11530", "BKC - 11530", "BKC - 11530", "BKC - 11530",
+  "BKC - 11532", "BKC - 11533", "BKC - 11533", "BKC - 11536",
+  "BKC - 11537", "BKC - 11538", "BKC - 11538", "BKC - 11538",
+  "BKC - 11538", "BKC - 11538", "BKC - 11539", "BKC - 11540",
+  "BKC - 11541", "BKC - 11542", "BKC - 11543", "BKC - 11544",
+  "BKC - 11545", "BKC - 11545", "BKC - 11547", "BKC - 11548",
+  "BKC - 11549", "BKC - 11550", "BKC - 11551", "BKC - 11552",
+  "BKC - 11552", "BKC - 11553", "BKC - 11555", "BKC - 11556",
+  "BKC - 11557", "BKC - 11557", "BKC - 11557", "BKC - 11557",
+  "BKC - 11559", "BKC - 11560", "BKC - 11560", "BKC - 11560",
+  "BKC - 11561", "BKC - 11561", "BKC - 11561", "BKC - 11561",
+  "BKC - 11561", "BKC - 11561", "BKC - 11561", "BKC - 11561",
+  "BKC - 11561", "BKC - 11561", "BKC - 11565", "BKC - 11568",
+  "BKC - 11569", "BKC - 11570", "BKC - 11571", "BKC - 11572",
+  "BKC - 11572", "BKC - 11572", "BKC - 11574", "BKC - 11575",
+  "BKC - 11576", "BKC - 11579", "BKC - 11580", "BKC - 11580",
+  "BKC - 11582", "BKC - 11583", "BKC - 11584", "BKC - 11584",
+  "BKC - 11584", "BKC - 11584", "BKC - 11584", "BKC - 11584",
+  "BKC - 11584", "BKC - 11584", "BKC - 11584", "BKC - 11584",
+  "BKC - 11586", "BKC - 11587", "BKC - 11587", "BKC - 11587",
+  "BKC - 11587", "BKC - 11587", "BKC - 11587", "BKC - 11587",
+  "BKC - 11587", "BKC - 11587", "BKC - 11589", "BKC - 11589",
+  "BKC - 11589", "BKC - 11590", "BKC - 11590", "BKC - 11590",
+  "BKC - 11592", "BKC - 11592", "BKC - 11592", "BKC - 11593",
+  "BKC - 11594", "BKC - 11594", "BKC - 11594", "BKC - 11594",
+  "BKC - 11594", "BKC - 11597", "BKC - 11598", "BKC - 11598",
+  "BKC - 11601", "BKC - 11602", "BKC - 11603", "BKC - 11604",
+  "BKC - 11604", "BKC - 11605", "BKC - 11606", "BKC - 11606",
+  "BKC - 11606", "BKC - 11607", "BKC - 11608", "BKC - 11610",
+  "BKC - 11610", "BKC - 11611", "BKC - 11611", "BKC - 11611",
+  "BKC - 11612", "BKC - 11613", "BKC - 11613", "BKC - 11614",
+  "BKC - 11614", "BKC - 11615", "BKC - 11616", "BKC - 11617",
+  "BKC - 11618", "BKC - 11619", "BKC - 11619", "BKC - 11620",
+  "BKC - 11621", "BKC - 11622", "BKC - 11624", "BKC - 11624",
+  "BKC - 11625", "BKC - 11626", "BKC - 11626", "BKC - 11626",
+  "BKC - 11627", "BKC - 11629", "BKC - 11629", "BKC - 11630",
+  "BKC - 11631", "BKC - 11632", "BKC - 11633", "BKC - 11634",
+  "BKC - 11635", "BKC - 11635", "BKC - 11636", "BKC - 11638",
+  "BKC - 11640", "BKC - 11640", "BKC - 11640", "BKC - 11641",
+  "BKC - 11642", "BKC - 11642", "BKC - 11642", "BKC - 11642",
+  "BKC - 11642", "BKC - 11643", "BKC - 11644", "BKC - 11644",
+  "BKC - 11644", "BKC - 11644", "BKC - 11645", "BKC - 11648",
+  "BKC - 11650", "BKC - 11651", "BKC - 11652", "BKC - 11653",
+  "BKC - 11655", "BKC - 11655", "BKC - 11655", "BKC - 11655",
+  "BKC - 11655", "BKC - 11655", "BKC - 11656", "BKC - 11657",
+  "BKC - 11657", "BKC - 11657", "BKC - 11657", "BKC - 11657",
+  "BKC - 11658", "BKC - 11658", "BKC - 11658", "BKC - 11659",
+  "BKC - 11660", "BKC - 11661", "BKC - 11661", "BKC - 11661",
+  "BKC - 11662", "BKC - 11663", "BKC - 11664", "BKC - 11666",
+  "BKC - 11667", "BKC - 11667", "BKC - 11668", "BKC - 11668",
+  "BKC - 11669", "BKC - 11669", "BKC - 11669", "BKC - 11669",
+  "BKC - 11669", "BKC - 11669", "BKC - 11670", "BKC - 11671",
+  "BKC - 11672", "BKC - 11673", "BKC - 11673", "BKC - 11674",
+  "BKC - 11674", "BKC - 11674", "BKC - 11674", "BKC - 11674",
+  "BKC - 11674", "BKC - 11674", "BKC - 11675", "BKC - 11675",
+  "BKC - 11675", "BKC - 11675", "BKC - 11675", "BKC - 11675",
+  "BKC - 11676", "BKC - 11676", "BKC - 11679", "BKC - 11680",
+  "BKC - 11681", "BKC - 11681", "BKC - 11682", "BKC - 11683",
+  "BKC - 11684", "BKC - 11685", "BKC - 11685", "BKC - 11686",
+  "BKC - 11687", "BKC - 11687", "BKC - 11687", "BKC - 11689",
+  "BKC - 11690", "BKC - 11691", "BKC - 11692", "BKC - 11692",
+  "BKC - 11694", "BKC - 11695", "BKC - 11696", "BKC - 11696",
+  "BKC - 11697", "BKC - 11698", "BKC - 11698", "BKC - 11698",
+  "BKC - 11698", "BKC - 11698", "BKC - 11698", "BKC - 11698",
+  "BKC - 11698", "BKC - 11698", "BKC - 11698", "BKC - 11698",
+  "BKC - 11698", "BKC - 11703", "BKC - 11703", "BKC - 11703",
+  "BKC - 11703", "BKC - 11703", "BKC - 11704", "BKC - 11704",
+  "BKC - 11704", "BKC - 11705", "BKC - 11707", "BKC - 11710",
+  "BKC - 11710", "BKC - 11711", "BKC - 11711", "BKC - 11712",
+  "BKC - 11713", "BKC - 11715", "BKC - 11715", "BKC - 11715",
+  "BKC - 11715", "BKC - 11715", "BKC - 11715", "BKC - 11715",
+  "BKC - 11715", "BKC - 11715", "BKC - 11715", "BKC - 11715",
+  "BKC - 11715", "BKC - 11715", "BKC - 11715", "BKC - 11715",
+  "BKC - 11715", "BKC - 11715", "BKC - 11715", "BKC - 11715",
+  "BKC - 11715", "BKC - 11716", "BKC - 11716", "BKC - 11716",
+  "BKC - 11716", "BKC - 11716", "BKC - 11716", "BKC - 11716",
+  "BKC - 11716", "BKC - 11716", "BKC - 11717", "BKC - 11717",
+  "BKC - 11717", "BKC - 11718", "BKC - 11718", "BKC - 11718",
+  "BKC - 11720", "BKC - 11722", "BKC - 11724", "BKC - 11725",
+  "BKC - 11727", "BKC - 11728", "BKC - 11728", "BKC - 11728",
+  "BKC - 11729", "BKC - 11730", "BKC - 11730", "BKC - 11730",
+  "BKC - 11731", "BKC - 11733", "BKC - 11735", "BKC - 11735",
+  "BKC - 11736", "BKC - 11740", "BKC - 11741", "BKC - 11741",
+  "BKC - 11742", "BKC - 11743", "BKC - 11744", "BKC - 11744",
+  "BKC - 11746", "BKC - 11747", "BKC - 11749", "BKC - 11749",
+  "BKC - 11750", "BKC - 11750", "BKC - 11751", "BKC - 11751",
+  "BKC - 11751", "BKC - 11751", "BKC - 11751", "BKC - 11752",
+  "BKC - 11752", "BKC - 11752", "BKC - 11753", "BKC - 11754",
+  "BKC - 11756", "BKC - 11756", "BKC - 11758", "BKC - 11759",
+  "BKC - 11760", "BKC - 11762", "BKC - 11764", "BKC - 11765",
+  "BKC - 11766", "BKC - 11767", "BKC - 11767", "BKC - 11769",
+  "BKC - 11770", "BKC - 11772", "BKC - 11772", "BKC - 11773",
+  "BKC - 11775", "BKC - 11776", "BKC - 11776", "BKC - 11776",
+  "BKC - 11779", "BKC - 11780", "BKC - 11781", "BKC - 11782",
+  "BKC - 11782", "BKC - 11783", "BKC - 11784", "BKC - 11785",
+  "BKC - 11787", "BKC - 11788", "BKC - 11788", "BKC - 11788",
+  "BKC - 11789", "BKC - 11790", "BKC - 11792", "BKC - 11793",
+  "BKC - 11793", "BKC - 11794", "BKC - 11796", "BKC - 11796",
+  "BKC - 11797", "BKC - 11797", "BKC - 11797", "BKC - 11797",
+  "BKC - 11798", "BKC - 11801", "BKC - 11802", "BKC - 11802",
+  "BKC - 11803", "BKC - 11804", "BKC - 11805", "BKC - 11805",
+  "BKC - 11807", "BKC - 11808", "BKC - 11809", "BKC - 11810",
+  "BKC - 11812", "BKC - 11812", "BKC - 11812", "BKC - 11812",
+  "BKC - 11812", "BKC - 11813", "BKC - 11813", "BKC - 11814",
+  "BKC - 11815", "BKC - 11815", "BKC - 11816", "BKC - 11817",
+  "BKC - 11817", "BKC - 11817", "BKC - 11818", "BKC - 11819",
+  "BKC - 11820", "BKC - 11821", "BKC - 11822", "BKC - 11822",
+  "BKC - 11823", "BKC - 11823", "BKC - 11824", "BKC - 11825",
+  "BKC - 11825", "BKC - 11825", "BKC - 11825", "BKC - 11828",
+  "BKC - 11829", "BKC - 11830", "BKC - 11830", "BKC - 11831",
+  "BKC - 11832", "BKC - 11832", "BKC - 11832", "BKC - 11832",
+  "BKC - 11832", "BKC - 11833", "BKC - 11836", "BKC - 11837",
+  "BKC - 11838", "BKC - 11839", "BKC - 11839", "BKC - 11840",
+  "BKC - 11840", "BKC - 11840", "BKC - 11841", "BKC - 11841",
+  "BKC - 11842", "BKC - 11843", "BKC - 11843", "BKC - 11843",
+  "BKC - 11844", "BKC - 11845", "BKC - 11846", "BKC - 11846",
+  "BKC - 11846", "BKC - 11846", "BKC - 11846", "BKC - 11846",
+  "BKC - 11846", "BKC - 11846", "BKC - 11846", "BKC - 11846",
+  "BKC - 11847", "BKC - 11848", "BKC - 11849", "BKC - 11849",
+  "BKC - 11850", "BKC - 11851", "BKC - 11854", "BKC - 11855",
+  "BKC - 11856", "BKC - 11858", "BKC - 11858", "BKC - 11859",
+  "BKC - 11860", "BKC - 11862", "BKC - 11863", "BKC - 11863",
+  "BKC - 11864", "BKC - 11865", "BKC - 11868", "BKC - 11871",
+  "BKC - 11871", "BKC - 11872", "BKC - 11872", "BKC - 11872",
+  "BKC - 11876", "BKC - 11877", "BKC - 11879", "BKC - 11880",
+  "BKC - 11880", "BKC - 11880", "BKC - 11880", "BKC - 11880",
+  "BKC - 11880", "BKC - 11880", "BKC - 11880", "BKC - 11880",
+  "BKC - 11880", "BKC - 11881", "BKC - 11881", "BKC - 11882",
+  "BKC - 11883", "BKC - 11884", "BKC - 11885", "BKC - 11887",
+  "BKC - 11888", "BKC - 11888", "BKC - 11889", "BKC - 11892",
+  "BKC - 11892", "BKC - 11892", "BKC - 11893", "BKC - 11893",
+  "BKC - 11894", "BKC - 11895", "BKC - 11895", "BKC - 11896",
+  "BKC - 11896", "BKC - 11896", "BKC - 11898", "BKC - 11899",
+  "BKC - 11900", "BKC - 11902", "BKC - 11904", "BKC - 11906",
+  "BKC - 11908", "BKC - 11908", "BKC - 11908", "BKC - 11908",
+  "BKC - 11908", "BKC - 11909", "BKC - 11910", "BKC - 11911",
+  "BKC - 11912", "BKC - 11914", "BKC - 11915", "BKC - 11917",
+  "BKC - 11919", "BKC - 11920", "BKC - 11921", "BKC - 11922",
+  "BKC - 11924", "BKC - 11927", "BKC - 11928", "BKC - 11929",
+  "BKC - 11930", "BKC - 11933", "BKC - 11933", "BKC - 11933",
+  "BKC - 11934", "BKC - 11936", "BKC - 11937", "BKC - 11939",
+  "BKC - 11939", "BKC - 11939", "BKC - 11941", "BKC - 11945",
+  "BKC - 11945", "BKC - 11945", "BKC - 11945", "BKC - 11945",
+  "BKC - 11946", "BKC - 11946", "BKC - 11946", "BKC - 11946",
+  "BKC - 11947", "BKC - 11947", "BKC - 11947", "BKC - 11947",
+  "BKC - 11947", "BKC - 11949", "BKC - 11950", "BKC - 11950",
+  "BKC - 11951", "BKC - 11953", "BKC - 11954", "BKC - 11954",
+  "BKC - 11955", "BKC - 11956", "BKC - 11957", "BKC - 11958",
+  "BKC - 11958", "BKC - 11959", "BKC - 11960", "BKC - 11961",
+  "BKC - 11961", "BKC - 11962", "BKC - 11963", "BKC - 11963",
+  "BKC - 11964", "BKC - 11965", "BKC - 11965", "BKC - 11965",
+  "BKC - 11965", "BKC - 11969", "BKC - 11971", "BKC - 11973",
+  "BKC - 11974", "BKC - 11974", "BKC - 11976", "BKC - 11977",
+  "BKC - 11978", "BKC - 11978", "BKC - 11978", "BKC - 11978",
+  "BKC - 11978", "BKC - 11980", "BKC - 11981", "BKC - 11982",
+  "BKC - 11987", "BKC - 11987", "BKC - 11987", "BKC - 11987",
+  "BKC - 11987", "BKC - 11988", "BKC - 11989", "BKC - 11990",
+  "BKC - 11991", "BKC - 11993", "BKC - 11994", "BKC - 11997",
+  "BKC - 11997", "BKC - 11998", "BKC - 12000", "BKC - 12001",
+  "BKC - 12001", "BKC - 12002", "BKC - 12005", "BKC - 12008",
+  "BKC - 12008", "BKC - 12009", "BKC - 12010", "BKC - 12010",
+  "BKC - 12011", "BKC - 12012", "BKC - 12013", "BKC - 12014",
+  "BKC - 12015", "BKC - 12016", "BKC - 12019", "BKC - 12022",
+  "BKC - 12022", "BKC - 12022", "BKC - 12024", "BKC - 12028",
+  "BKC - 12028", "BKC - 12028", "BKC - 12028", "BKC - 12029",
+  "BKC - 12034", "BKC - 12034", "BKC - 12034", "BKC - 12034",
+  "BKC - 12035", "BKC - 12037", "BKC - 12037", "BKC - 12038",
+  "BKC - 12038", "BKC - 12039", "BKC - 12040", "BKC - 12043",
+  "BKC - 12043", "BKC - 12046", "BKC - 12048", "BKC - 12049",
+  "BKC - 12049", "BKC - 12050", "BKC - 12051", "BKC - 12052",
+  "BKC - 12054", "BKC - 12054", "BKC - 12056", "BKC - 12057",
+  "BKC - 12057", "BKC - 12057", "BKC - 12061", "BKC - 12062",
+  "BKC - 12062", "BKC - 12063", "BKC - 12068", "BKC - 12077",
+  "BKC - 12078", "BKC - 12079", "BKC - 12082", "BKC - 12082",
+  "BKC - 12082", "BKC - 12082", "BKC - 12082", "BKC - 12083",
+  "BKC - 12083", "BKC - 12086", "BKC - 12086", "BKC - 12086",
+  "BKC - 12086", "BKC - 12086", "BKC - 12087", "BKC - 12090",
+  "BKC - 12093", "BKC - 12093", "BKC - 12095", "BKC - 12098",
+  "BKC - 12100", "BKC - 12101", "BKC - 12102", "BKC - 12102",
+  "BKC - 12102", "BKC - 12102", "BKC - 12102", "BKC - 12103",
+  "BKC - 12103", "BKC - 12104", "BKC - 12105", "BKC - 12105",
+  "BKC - 12106", "BKC - 12107", "BKC - 12107", "BKC - 12107",
+  "BKC - 12107", "BKC - 12107", "BKC - 12109", "BKC - 12109",
+  "BKC - 12110", "BKC - 12110", "BKC - 12112", "BKC - 12114",
+  "BKC - 12114", "BKC - 12115", "BKC - 12115", "BKC - 12116",
+  "BKC - 12116", "BKC - 12116", "BKC - 12116", "BKC - 12116",
+  "BKC - 12116", "BKC - 12116", "BKC - 12116", "BKC - 12116",
+  "BKC - 12116", "BKC - 12116", "BKC - 12116", "BKC - 12116",
+  "BKC - 12116", "BKC - 12116", "BKC - 12116", "BKC - 12116",
+  "BKC - 12116", "BKC - 12116", "BKC - 12117", "BKC - 12118",
+  "BKC - 12119", "BKC - 12120", "BKC - 12121", "BKC - 12121",
+  "BKC - 12122", "BKC - 12122", "BKC - 12123", "BKC - 12123",
+  "BKC - 12124", "BKC - 12124", "BKC - 12125", "BKC - 12126",
+  "BKC - 12128", "BKC - 12129", "BKC - 12130", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12131", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12131", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12131", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12131", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12131", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12131", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12131", "BKC - 12131",
+  "BKC - 12131", "BKC - 12131", "BKC - 12132", "BKC - 12133",
+  "BKC - 12133", "BKC - 12133", "BKC - 12133", "BKC - 12133",
+  "BKC - 12134", "BKC - 12135", "BKC - 12135", "BKC - 12137",
+  "BKC - 12138", "BKC - 12140", "BKC - 12142", "BKC - 12142",
+  "BKC - 12142", "BKC - 12143", "BKC - 12144", "BKC - 12145",
+  "BKC - 12145", "BKC - 12146", "BKC - 12146", "BKC - 12146",
+  "BKC - 12147", "BKC - 12147", "BKC - 12148", "BKC - 12151",
+  "BKC - 12154", "BKC - 12155", "BKC - 12156", "BKC - 12157",
+  "BKC - 12157", "BKC - 12158", "BKC - 12159", "BKC - 12159",
+  "BKC - 12161", "BKC - 12162", "BKC - 12162", "BKC - 12164",
+  "BKC - 12164", "BKC - 12165", "BKC - 12165", "BKC - 12165",
+  "BKC - 12166", "BKC - 12167", "BKC - 12167", "BKC - 12168",
+  "BKC - 12171", "BKC - 12172", "BKC - 12173", "BKC - 12173",
+  "BKC - 12173", "BKC - 12174", "BKC - 12176", "BKC - 12178",
+  "BKC - 12180", "BKC - 12180", "BKC - 12180", "BKC - 12180",
+  "BKC - 12180", "BKC - 12180", "BKC - 12180", "BKC - 12180",
+  "BKC - 12180", "BKC - 12180", "BKC - 12180", "BKC - 12180",
+  "BKC - 12180", "BKC - 12180", "BKC - 12181", "BKC - 12182",
+  "BKC - 12184", "BKC - 12185", "BKC - 12185", "BKC - 12186",
+  "BKC - 12186", "BKC - 12187", "BKC - 12188", "BKC - 12189",
+  "BKC - 12189", "BKC - 12190", "BKC - 12190", "BKC - 12191",
+  "BKC - 12192", "BKC - 12192", "BKC - 12193", "BKC - 12194",
+  "BKC - 12195", "BKC - 12196", "BKC - 12197", "BKC - 12200",
+  "BKC - 12200", "BKC - 12202", "BKC - 12204", "BKC - 12204",
+  "BKC - 12204", "BKC - 12205", "BKC - 12206", "BKC - 12206",
+  "BKC - 12207", "BKC - 12208", "BKC - 12208", "BKC - 12208",
+  "BKC - 12209", "BKC - 12209", "BKC - 12210", "BKC - 12211",
+  "BKC - 12211", "BKC - 12211", "BKC - 12211", "BKC - 12211",
+  "BKC - 12212", "BKC - 12213", "BKC - 12213", "BKC - 12213",
+  "BKC - 12214", "BKC - 12214", "BKC - 12216", "BKC - 12217",
+  "BKC - 12217", "BKC - 12218", "BKC - 12218", "BKC - 12219",
+  "BKC - 12219", "BKC - 12220", "BKC - 12220", "BKC - 12221",
+  "BKC - 12221", "BKC - 12222", "BKC - 12224", "BKC - 12225",
+  "BKC - 12227", "BKC - 12229", "BKC - 12230", "BKC - 12230",
+  "BKC - 12230", "BKC - 12231", "BKC - 12233", "BKC - 12233",
+  "BKC - 12235", "BKC - 12236", "BKC - 12236", "BKC - 12238",
+  "BKC - 12239", "BKC - 12240", "BKC - 12241", "BKC - 12242",
+  "BKC - 12242", "BKC - 12242", "BKC - 12242", "BKC - 12242",
+  "BKC - 12242", "BKC - 12242", "BKC - 12242", "BKC - 12242",
+  "BKC - 12242", "BKC - 12243", "BKC - 12244", "BKC - 12244",
+  "BKC - 12244", "BKC - 12245", "BKC - 12246", "BKC - 12247",
+  "BKC - 12247", "BKC - 12248", "BKC - 12249", "BKC - 12251",
+  "BKC - 12252", "BKC - 12273", "BKC - 12273", "BKC - 12315",
+  "BKC - 12315"
+];
+
+      // ===== DATA: NAMES =====
+const names = [
+  "Dont_BBlink", "Mario", "SamanthaJ", "Joe805", "Warmongerz", "Insidiousowl", "Brightdreamer", "MickeyDowning",
+  "That1Btch", "Crash923", "Jack P.", "Pink Mimosa 🍸🩷", "Shickenisgood", "CharlieHustle", "Squatch", "bojustice",
+  "SHNATSS", "Spencer", "SamanthaJ", "ShoySauce", "Lead_Handed", "DKUltra69", "Virtualanomaly8", "Grom",
+  "ScubaSteve", "SquirterMcGavin", "Doubledose7", "u/Inevitable-Log-287", "Minorthreat2", "MarkyMark311", "zona_bamblona", "tabDaddy",
+  "Jeffrobodean88", "Ataylor89", "Holladimsum", "Bafisher22", "Rustshacleford", "Cosmic_explorer_1943", "Pat967", "Old_dirty_chinese_restaurant",
+  "Daniel836", "Heavy.Solstice", "Trendsetter", "Mdiddy", "COVERTLOTUS", "Nlightened333", "Cold8", "Sunshine RagerXX",
+  "SevensHeavens_Steve", "Malicev", "Jussmoney416", "zeroDOLLARgRo", "J-McPaid92", "DadBrewsCraft", "Xx_420BlaiZeMa$tEr69_xX", "Eyeswideshut369",
+  "MacInvest", "DarkBillee", "Fckyou69", "664992", "Alxanderthegreat", "Jerry", "ChanDaMan", "Bigmike0912",
+  "TR3DAY1", "Dev_7oh", "AlwaystheLastLeg", "ImpulsivelyTentative", "TheDextrometh-Orphan", "Impactbytruth", "LungzOfGod91", "Jr83",
+  "Jayoverhol", "stereofoo4269", "Puller", "Itsziggytime", "Jmw0120", "Tmoney", "Fattyhtx", "JackStrawWichita",
+  "LosingMyWayO7", "Cdizzle", "Sp33d3r", "PlurIsTheWord", "7ohBlack-Tori", "Andy42591", "Cozi.FM", "JitBunzGlazed",
+  "MrZombieLive", "♡Luna♡", "Mitragynist", "Informal_house", "BaddyTiaraNikki", "BruceMcDickles", "TeeMesa480", "Jim580",
+  "HoustonSolo", "Chuckt6589", "Mr. Mean Nice Guy", "Alcatrazepam", "Insidiousowl", "Captbottombouncer", "Wacky2bakky", "7th Heaven",
+  "Dense-Extent6058", "Stablegenius", "Psychonaut", "ManBearPig", "Karmonic", "IAmJuniorB", "Jeffrx", "hungryhobo2",
+  "Blergs", "MoneyMike1515", "Cashman", "Lane", "nic025058", "kingoffrogs69", "fasteddie345", "iamthe10457",
+  "nadrame", "Dushamp", "Saj808_18338", "27grim", "dennis.sentivatecom", "Greenframe56_93791", "Kaine1969", "Istaayflaat",
+  "Maxfontaine2168", "Savesday", "Momof6littles", "superdank420x", "Richted3622", "Knighthash", "davidq101", "Pattypounds",
+  "Patwiththestrat", "Whowrld", "Dhaymion", "zbaby616", "Washingtonhighlife", "Rivermike0139", "shermsticky49", "samanthaj0377",
+  "Dont_BBlink", "Mario", "SamanthaJ", "Joe805", "Warmongerz", "Insidiousowl", "Brightdreamer", "MickeyDowning",
+  "That1Btch", "Crash923", "Jack P.", "Pink Mimosa 🍸🩷", "Shickenisgood", "CharlieHustle", "Squatch", "bojustice",
+  "SHNATSS", "Spencer", "SamanthaJ", "ShoySauce", "Lead_Handed", "DKUltra69", "Virtualanomaly8", "Grom",
+  "ScubaSteve", "SquirterMcGavin", "Doubledose7", "u/Inevitable-Log-287", "Minorthreat2", "MarkyMark311", "zona_bamblona", "tabDaddy",
+  "Jeffrobodean88", "Ataylor89", "Holladimsum", "Bafisher22", "Rustshacleford", "Cosmic_explorer_1943", "Pat967", "Old_dirty_chinese_restaurant",
+  "Daniel836", "Heavy.Solstice", "Trendsetter", "Mdiddy", "COVERTLOTUS", "Nlightened333", "Cold8", "Sunshine RagerXX",
+  "SevensHeavens_Steve", "Malicev", "Jussmoney416", "zeroDOLLARgRo", "J-McPaid92", "DadBrewsCraft", "Xx_420BlaiZeMa$tEr69_xX", "Eyeswideshut369",
+  "MacInvest", "DarkBillee", "Fckyou69", "664992", "Alxanderthegreat", "Jerry", "ChanDaMan", "Bigmike0912",
+  "TR3DAY1", "Dev_7oh", "AlwaystheLastLeg", "ImpulsivelyTentative", "TheDextrometh-Orphan", "Impactbytruth", "LungzOfGod91", "Jr83",
+  "Jayoverhol", "stereofoo4269", "Puller", "Itsziggytime", "Jmw0120", "Tmoney", "Fattyhtx", "JackStrawWichita",
+  "LosingMyWayO7", "Cdizzle", "Sp33d3r", "PlurIsTheWord", "7ohBlack-Tori", "Andy42591", "Cozi.FM", "JitBunzGlazed",
+  "MrZombieLive", "♡Luna♡", "Mitragynist", "Informal_house", "BaddyTiaraNikki", "BruceMcDickles", "TeeMesa480", "Jim580",
+  "HoustonSolo", "Chuckt6589", "Mr. Mean Nice Guy", "Alcatrazepam", "Insidiousowl", "Captbottombouncer", "Wacky2bakky", "7th Heaven",
+  "Dense-Extent6058", "Stablegenius", "Psychonaut", "ManBearPig", "Karmonic", "IAmJuniorB", "Jeffrx", "hungryhobo2",
+  "Blergs", "MoneyMike1515", "Cashman", "Lane", "nic025058", "kingoffrogs69", "fasteddie345", "iamthe10457",
+  "nadrame", "Dushamp", "Saj808_18338", "27grim", "dennis.sentivatecom", "Greenframe56_93791", "Kaine1969", "Istaayflaat",
+  "Maxfontaine2168", "Savesday", "Momof6littles", "superdank420x", "Richted3622", "Knighthash", "davidq101", "Pattypounds",
+  "Patwiththestrat", "Whowrld", "Dhaymion", "zbaby616", "Washingtonhighlife", "Rivermike0139", "shermsticky49", "samanthaj0377"
+];
+
+      // ===== PICKERS =====
+      // Spinner 1 = orders + names
+      const picker1 = [...orders, ...names];
+      // Spinner 2 = orders only
+      const picker2 = [...orders];
+
+      // ===== STATE / ELEMENTS =====
+      let currentPicker = 1;
+      let entries = [...picker1];
+
+      const winnerBox = document.getElementById("winner-box");
+      const drawBtn = document.getElementById("draw-btn");
+      const mainTitle = document.getElementById("main-title");
+
+      const winners = [];
+      const winnersListEl = document.createElement("div");
+      winnersListEl.id = "winners-list";
+      winnersListEl.style.marginTop = "40px";
+      winnersListEl.innerHTML = '<h2 style="color:#ffffff">🏆 Lucky Winners:</h2><ol id="winners"></ol>';
+      document.querySelector('.container').appendChild(winnersListEl);
+
+      function updateWinnersList() {
+        const list = document.getElementById("winners");
+        list.innerHTML = "";
+        winners.forEach(w => {
+          const li = document.createElement("li");
+          li.innerHTML = `<span style="color:#0f0">${w}</span>`;
+          list.appendChild(li);
+        });
+      }
+
+      const getRandomEntry = list => list[Math.floor(Math.random() * list.length)];
+
+      function drawWinner() {
+        if (winners.length >= MAX_WINNERS) {
+          alert(`🎉 All ${MAX_WINNERS} winners have been drawn!`);
+          return;
+        }
+
+        drawBtn.disabled = true;
+        let countdown = 20;
+
+        const interval = setInterval(() => {
+          const roll = getRandomEntry(entries);
+          winnerBox.textContent = roll;
+          countdown--;
+
+          if (countdown <= 0) {
+            clearInterval(interval);
+            let winner;
+            do {
+              winner = getRandomEntry(entries);
+            } while (winners.includes(winner)); // avoid duplicates in winners list
+
+            winners.push(winner);
+            updateWinnersList();
+            winnerBox.textContent = `🎉 Winner: ${winner} 🎉`;
+            launchConfetti();
+            drawBtn.disabled = false;
+          }
+        }, 100);
+      }
+
+      function setCheesecakeTitles() {
+        document.title = "STRAW-LEMON DOLLAR DAY GIVEAWAY!";
+        mainTitle.textContent = "🎉 THE BKC STRAW-LEMON DOLLAR DAY GIVEAWAY! 🎉";
+      }
+
+      function setGrandPrizesTitles() {
+        document.title = "ARE YOU READY FOR THE GRAND PRIZES";
+        mainTitle.textContent = "🎁 ARE YOU READY FOR THE GRAND PRIZES? 🎁";
+      }
+
+      function switchPicker() {
+        currentPicker = currentPicker === 1 ? 2 : 1;
+        entries = currentPicker === 1 ? [...picker1] : [...picker2];
+
+        if (currentPicker === 2) {
+          setGrandPrizesTitles();
+        } else {
+          setCheesecakeTitles();
+        }
+      }
+
+      // Set correct default titles on initial load (so no Shift is required)
+      document.addEventListener("DOMContentLoaded", () => {
+        setCheesecakeTitles(); // default view is picker1
+      });
+
+      // ===== EVENTS =====
+      drawBtn.addEventListener("click", drawWinner);
+
+      document.getElementById("reset-btn").addEventListener("click", () => {
+        winners.length = 0;
+        updateWinnersList();
+        winnerBox.textContent = "THE LUCKY BKC FAM MEMBER IS...";
+      });
+
+      document.getElementById("export-btn").addEventListener("click", () => {
+        const csvContent = 'data:text/csv;charset=utf-8,' + winners.map((w, i) => `${i + 1},${w}`).join('\n');
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "bkc_winners.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      // Shift toggles between pickers
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Shift") switchPicker();
+      });
+
+      // ===== CONFETTI =====
+      function launchConfetti() {
+        const duration = 2000;
+        const end = Date.now() + duration;
+        (function frame() {
+          window.confetti({ particleCount: 10, angle: 60, spread: 75, origin: { x: 0 } });
+          window.confetti({ particleCount: 10, angle: 120, spread: 75, origin: { x: 1 } });
+          if (Date.now() < end) requestAnimationFrame(frame);
+        })();
+      }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </div>
+</body>
+</html>
